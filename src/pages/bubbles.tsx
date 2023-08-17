@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import profileImage from '../assets/profile.jpg';
+import { Link, useNavigate } from 'react-router-dom';
+import moon from '../assets/moon.jpg';
 import gitHubImage from '../assets/github.jpg';
 import linkedinImage from '../assets/linkedin.jpg';
-import phoneMail from '../assets/phone1.jpg'; 
 import ContactModal from './contactModal';
 import surf from '../assets/surf.jpg'
 import logo from '../assets/logo.svg'
+import jump from '../assets/jump.jpg'
 import CV from '../assets/CV Hugh.pdf'
+import mountain from '../assets/mountain.jpg'
+import contact from '../assets/contact.jpg'
+
+import Nav from './nav';
 
 interface Bubble {
   id: string;
@@ -24,12 +28,12 @@ interface Bubble {
 
 function Bubbles() {
   const bubbleData: Bubble[] = [
-    { id: 'about', text: 'About Me', x: 0, y: 0, speedX: 0, speedY: 0, color: 'red', endpoint: '/about' },
-    { id: 'experience', text: 'Experience', x: 0, y: 0, speedX: 0, speedY: 0, color: 'purple', endpoint: '/experience' },
-    { id: 'projects', text: 'Projects', x: 0, y: 0, speedX: 0, speedY: 0, color: 'blue', endpoint: '/projects' },
-    { id: 'social media', text: 'Social Media', x: 0, y: 0, speedX: 0, speedY: 0, color: 'green' },
-    { id: 'profile', text: '', x: 0, y: 0, speedX: 0, speedY: 0, color: 'teal', photo: profileImage },
-    { id: 'cv', text: 'Resume', x: 0, y: 0, speedX: 0, speedY: 0, color: 'violet'},
+    { id: 'about', text: 'About Me', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-teal-500 hover:bg-teal-700', endpoint: '/about' },
+    { id: 'experience', text: 'Experience', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-purple-500 hover:bg-purple-600', endpoint: '/experience' },
+    { id: 'projects', text: 'Projects', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-blue-500 hover:bg-blue-600', endpoint: '/projects' },
+    { id: 'social media', text: 'Social Media', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-amber-500 hover:bg-amber-600' },
+    { id: 'profile', text: '', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-gray-200 hover:bg-gray-300', photo: surf },
+    { id: 'cv', text: 'Resume', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-green-500 hover:bg-green-600'},
   ];      
   const [showModal, setShowModal] = useState(false);
   const [bubbles, setBubbles] = useState<Bubble[]>(bubbleData);
@@ -37,7 +41,7 @@ function Bubbles() {
 
   useEffect(() => {
     const bubbleSize = 200;
-    const maxSpeed = 1;
+    const maxSpeed = 0.5;
     const circumference = 200;
     const radius = 100;
     const makeSmooth = 2;
@@ -144,8 +148,21 @@ function Bubbles() {
       setShowModal(true);
     }
     if (bubble.id === 'profile') {
-      bubble.photo !== surf? bubble.photo = surf : bubble.photo = profileImage
+      if (bubble.photo === surf) {
+        bubble.photo = mountain
+      }
+      else if (bubble.photo === mountain) {
+        bubble.photo = moon
+      }
+      else if (bubble.photo === moon) {
+        bubble.photo = jump
+      }
+      else {
+        bubble.photo = surf
+      }
     }
+      
+
     
     if (bubble.id === 'cv') {
       // Trigger the download by creating a link element and simulating a click
@@ -156,9 +173,9 @@ function Bubbles() {
     }
     if (bubble.id === 'social media') {
       const radius = 100;
-      const github = { id: 'github', text: '', x: bubble.x - radius, y: bubble.y, speedX: -bubble.speedX, speedY: bubble.speedY, color: 'green', photo: gitHubImage, url:'https://github.com/hughavery'};
-      const phoneAndMail = { id: 'phone', text: '', x: bubble.x, y: bubble.y - radius, speedX: bubble.speedX, speedY: bubble.speedY, color: 'orange', photo: phoneMail};
-      const linkedin = { id: 'linkedin', text: '', x: bubble.x + radius, y: bubble.y, speedX: bubble.speedX, speedY: bubble.speedY, color: 'gray', photo: linkedinImage, url:'https://www.linkedin.com/in/hugh-avery-b11214206'  };
+      const github = { id: 'github', text: '', x: bubble.x - radius, y: bubble.y, speedX: -bubble.speedX, speedY: bubble.speedY, color: 'bg-slate-950 hover:bg-slate-800', photo: gitHubImage, url:'https://github.com/hughavery'} as const ;
+      const phoneAndMail = { id: 'phone', text: '', x: bubble.x, y: bubble.y - radius, speedX: bubble.speedX, speedY: bubble.speedY, color: 'bg-red-500 hover:bg-red-600', photo: contact} as const;
+      const linkedin = { id: 'linkedin', text: '', x: bubble.x + radius, y: bubble.y, speedX: bubble.speedX, speedY: bubble.speedY, color: 'bg-blue-600 hover:bg-blue-700', photo: linkedinImage, url:'https://www.linkedin.com/in/hugh-avery-b11214206'} as const;
       const updatedBubbles = [...bubbles.filter((b) => b.id !== 'social media'), github, linkedin, phoneAndMail];
       setBubbles(updatedBubbles);
     }
@@ -174,7 +191,7 @@ function Bubbles() {
     return (
       <div
         key={bubble.id}
-        className={`bubble font-bold text-gray-100 bg-${bubbleColor}-300 hover:bg-${bubbleColor}-600`}
+        className={`bubble font-bold text-gray-100 font-sans ${bubbleColor}`}
         style={{ left: bubble.x, top: bubble.y}}
         onClick={() => handleBubbleClick(bubble)}
       >
@@ -194,14 +211,8 @@ function Bubbles() {
 
   return (
     <body>
-      <header>
-        <div className='flex justify-center' >
-        <img src={logo} alt="" className="w-20 h-20 mr-4" />
-        <h1 >Hugh R Avery  </h1>
-        <img src={logo} alt="" className="w-20 h-20 ml-4" />
-        </div>
-      </header>
-
+      
+      <Nav />
       <main>{renderBubbles()}</main>
       {showModal && <ContactModal onClose={closeModal} />}
     </body>
