@@ -50,10 +50,9 @@ main {
   height: 100vh;
 }
 
+/* Common styles for both sizes */
 .bubble {
   position: absolute;
-  width: 200px;
-  height: 200px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -67,3 +66,17 @@ main {
   font-size: xx-large;
 }
 
+/* Larger screens */
+.bubble {
+  width: 200px;
+  height: 200px;
+}
+
+/* Smaller screens */
+@media (max-width: 768px) { /* You can adjust the max-width value to your preference */
+  .bubble {
+    width: 150px;
+    height: 150px;
+    font-size: large; /* Adjust the font size for smaller screens */
+  }
+}

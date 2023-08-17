@@ -9,8 +9,8 @@ import jump from '../assets/jump.jpg'
 import CV from '../assets/CV Hugh.pdf'
 import mountain from '../assets/mountain.jpg'
 import contact from '../assets/contact.jpg'
-
 import Nav from './nav';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface Bubble {
   id: string;
@@ -37,12 +37,12 @@ function Bubbles() {
   const [showModal, setShowModal] = useState(false);
   const [bubbles, setBubbles] = useState<Bubble[]>(bubbleData);
   const navigate = useNavigate();
+  const isSmallScreen = useMediaQuery('(max-width: 640px)');
 
   useEffect(() => {
-    const bubbleSize = 200;
+    const bubbleSize = isSmallScreen ? 150 : 200;
     const maxSpeed = 0.5;
-    const circumference = 200;
-    const radius = 100;
+    const radius = isSmallScreen ? 75 : 100;
     const makeSmooth = 2;
 
     function distance(x: number, y: number) {
@@ -65,14 +65,15 @@ function Bubbles() {
       } else if (newX > window.innerWidth - (radius + makeSmooth)) {
         bubble.speedX = -Math.abs(bubble.speedX);
       }
-
+      let smallScreenPadding = isSmallScreen ? 20 : 45;
       if (newY < radius + makeSmooth) {
         bubble.speedY = Math.abs(bubble.speedY);
-      } else if (newY > window.innerHeight - circumference - 15) {
+      } else if (newY > window.innerHeight - (bubbleSize) + (smallScreenPadding)  ) {
         bubble.speedY = -Math.abs(bubble.speedY);
       }
 
       for (let i = index + 1; i < bubbles.length; i++) {
+        console.log(isSmallScreen);
         const otherBubble = bubbles[i];
         const dx = bubble.x - otherBubble.x;
         const dy = bubble.y - otherBubble.y;
@@ -120,21 +121,7 @@ function Bubbles() {
     let animationFrameId = requestAnimationFrame(update);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, []);
-
-  // const getRandomColor = () => {
-  //   const colors = [
-  //     'pink',
-  //     'purple',
-  //     'blue',
-  //     'green',
-  //     'rgb(220, 15, 15)',
-  //     'rgb(217, 217, 28)',
-  //     'rgb(34, 176, 176)',
-  //     'rgb(212, 53, 227)',
-  //   ];
-  //   return colors[Math.floor(Math.random() * colors.length)];
-  // };
+  }, [isSmallScreen]);
 
   function handleBubbleClick(bubble: Bubble) {
     if (bubble.endpoint) {
@@ -164,10 +151,9 @@ function Bubbles() {
 
     
     if (bubble.id === 'cv') {
-      // Trigger the download by creating a link element and simulating a click
       const link = document.createElement('a');
-      link.href = CV; // Replace with the actual URL of your resume PDF file
-      link.download = 'CV_Hugh_Avery.pdf'; // Specify the desired filename for the downloaded file
+      link.href = CV; 
+      link.download = 'CV_Hugh_Avery.pdf'; 
       link.click();
     }
     if (bubble.id === 'social media') {
@@ -186,26 +172,28 @@ function Bubbles() {
 
   const renderBubbles = () =>
   bubbles.map((bubble) => {
-    const bubbleColor = bubble.color;
-    return (
-      <div
-        key={bubble.id}
-        className={`bubble font-bold text-gray-100 font-sans ${bubbleColor}`}
-        style={{ left: bubble.x, top: bubble.y}}
-        onClick={() => handleBubbleClick(bubble)}
-      >
-        {bubble.photo ? (
-          <img
-            src={bubble.photo}
-            alt="Profile"
-            className="object-cover w-full h-full rounded-full"
-          />
-        ) : (
-          bubble.text
-        )}
-      </div>
-    );
-  });
+  const bubbleColor = bubble.color;
+
+
+  return (
+    <div
+      key={bubble.id}
+      className={`bubble font-bold text-gray-100 font-sans ${bubbleColor}`}
+      style={{ left: bubble.x, top: bubble.y}}
+      onClick={() => handleBubbleClick(bubble)}
+    >
+      {bubble.photo ? (
+        <img
+          src={bubble.photo}
+          alt="Profile"
+          className="object-cover w-full h-full rounded-full"
+        />
+      ) : (
+        bubble.text
+      )}
+    </div>
+  );
+});
 
 
   return (

@@ -9,17 +9,17 @@ function Nav() {
       <div className="flex items-center">
         <Link to="/" className='flex items-center'>
           <img src={logo} alt="Logo" className="w-10 h-10 mr-2" />
-          <h1 className={`text-white text-lg font-semibold hover:text-gray-300 ${location.pathname === '/bubbles' ? 'underline' : ''}`}>Hugh Avery</h1>
+          <h1 className={`text-white text-lg font-semibold hover:text-gray-300 hover:underline ${location.pathname === '/bubbles' ? 'underline' : ''}`}>Hugh Avery</h1>
         </Link>
       </div>
       <nav className="space-x-4 flex items-center">
-        <Link to="/about" className={`text-white hover:text-gray-300 ${location.pathname === '/about' ? 'font-semibold underline' : ''}`}>
+        <Link to="/about" className={`text-white hover:text-gray-300 hover:underline ${location.pathname === '/about' ? 'font-semibold underline' : ''}`}>
           About Me
         </Link>
-        <Link to="/projects" className={`text-white hover:text-gray-300 ${location.pathname === '/projects' ? 'font-semibold underline' : ''}`}>
+        <Link to="/projects" className={`text-white hover:text-gray-300 hover:underline ${location.pathname === '/projects' ? 'font-semibold underline' : ''}`}>
           Projects
         </Link>
-        <Link to="/experience" className={`text-white hover:text-gray-300 ${location.pathname === '/experience' ? 'font-semibold underline' : ''}`}>
+        <Link to="/experience" className={`text-white hover:text-gray-300 hover:underline ${location.pathname === '/experience' ? 'font-semibold underline' : ''}`}>
           Experience
         </Link>
       </nav>
