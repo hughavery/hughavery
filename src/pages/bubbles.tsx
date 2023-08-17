@@ -40,9 +40,9 @@ function Bubbles() {
   const isSmallScreen = useMediaQuery('(max-width: 640px)');
 
   useEffect(() => {
-    const bubbleSize = isSmallScreen ? 150 : 200;
+    const bubbleSize = isSmallScreen ? 140 : 200;
     const maxSpeed = 0.5;
-    const radius = isSmallScreen ? 75 : 100;
+    const radius = isSmallScreen ? 70 : 100;
     const makeSmooth = 2;
 
     function distance(x: number, y: number) {

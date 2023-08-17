@@ -5,7 +5,7 @@ function Experience() {
   return (
     <div>
       <Nav />
-      <div className='flex justify-center items-center min-h-screen'>
+      <div className='flex justify-center items-center  min-h-[calc(100vh-3.5rem)]'>
         <a
           href="https://www.orbviz.com/" target="_blank"
           className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 hover:-translate-y-1 mb-10 md:mb-0"

@@ -6,7 +6,7 @@ function About() {
   return (
     <div>
     <Nav />
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-300">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-3.5rem)] bg-gray-300">
       <div className="flex flex-col items-center justify-center mt-12">
         <div className="max-w-md bg-white rounded-lg shadow-lg overflow-hidden mb-32">
           <div className="p-3">

@@ -6,7 +6,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: auto;
   background-color: #deddddb3; /* Add this line to set the grey background color */
 }
 
@@ -73,10 +73,10 @@ main {
 }
 
 /* Smaller screens */
-@media (max-width: 768px) { /* You can adjust the max-width value to your preference */
+@media (max-width: 640px) { /* You can adjust the max-width value to your preference */
   .bubble {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     font-size: large; /* Adjust the font size for smaller screens */
   }
 }
