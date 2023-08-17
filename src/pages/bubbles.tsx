@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import moon from '../assets/moon.jpg';
 import gitHubImage from '../assets/github.jpg';
 import linkedinImage from '../assets/linkedin.jpg';
 import ContactModal from './contactModal';
 import surf from '../assets/surf.jpg'
-import logo from '../assets/logo.svg'
 import jump from '../assets/jump.jpg'
 import CV from '../assets/CV Hugh.pdf'
 import mountain from '../assets/mountain.jpg'
