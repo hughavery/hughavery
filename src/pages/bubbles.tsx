@@ -9,6 +9,7 @@ import jump from '../assets/jump.jpg'
 import CV from '../assets/CV Hugh.pdf'
 import mountain from '../assets/mountain.jpg'
 import contact from '../assets/contact.jpg'
+import popSound from '../assets/pop.wav';
 import Nav from './nav';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 
@@ -34,6 +35,7 @@ function Bubbles() {
     { id: 'profile', text: '', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-gray-200 hover:bg-gray-300', photo: surf },
     { id: 'cv', text: 'Resume', x: 0, y: 0, speedX: 0, speedY: 0, color: 'bg-green-500 hover:bg-green-600'},
   ];      
+  const [popAudio] = useState(new Audio(popSound));
   const [showModal, setShowModal] = useState(false);
   const [bubbles, setBubbles] = useState<Bubble[]>(bubbleData);
   const navigate = useNavigate();
@@ -157,6 +159,8 @@ function Bubbles() {
       link.click();
     }
     if (bubble.id === 'social media') {
+      popAudio.play();
+
       const radius = 100;
       const github = { id: 'github', text: '', x: bubble.x - radius, y: bubble.y, speedX: -bubble.speedX, speedY: bubble.speedY, color: 'bg-slate-950 hover:bg-slate-800', photo: gitHubImage, url:'https://github.com/hughavery'} as const ;
       const phoneAndMail = { id: 'phone', text: '', x: bubble.x, y: bubble.y - radius, speedX: bubble.speedX, speedY: bubble.speedY, color: 'bg-red-500 hover:bg-red-600', photo: contact} as const;
@@ -178,7 +182,7 @@ function Bubbles() {
   return (
     <div
       key={bubble.id}
-      className={`bubble font-bold text-gray-100 font-sans ${bubbleColor}`}
+      className={`bubble font-bold text-gray-100 font-sans select-none [-webkit-tap-highlight-color:transparent] ${bubbleColor}`}
       style={{ left: bubble.x, top: bubble.y}}
       onClick={() => handleBubbleClick(bubble)}
     >
