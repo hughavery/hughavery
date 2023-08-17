@@ -1,17 +1,14 @@
 // Note: About page
 import profileImage from '../assets/profile.jpg';
-import BackButton from './backButton';
-import logo from '../assets/logo.svg';
+import Nav from './nav';
 
 function About() {
   return (
+    <div>
+    <Nav />
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-300">
-      <div className="flex justify-center items-center bg-gray-300">
-        <img src={logo} alt="" className="w-20 h-20" />
-      </div>
-      <BackButton />
       <div className="flex flex-col items-center justify-center mt-12">
-        <div className="max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="max-w-md bg-white rounded-lg shadow-lg overflow-hidden mb-32">
           <div className="p-3">
             <div className="relative mt-4">
               <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-8 m">
@@ -43,6 +40,7 @@ function About() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -1,8 +1,7 @@
 
 import saturday from '../assets/saturday.jpg';
 import filmflix from '../assets/filmflix.jpg';
-import BackButton from './backButton';
-import logo from '../assets/logo.svg';
+import Nav from './nav';
 
 function Projects() {
   const saturdayDescription =
@@ -14,10 +13,7 @@ function Projects() {
 
   return (
     <div className="overflow-auto h-screen">
-      <div className="flex justify-center items-center">
-        <img src={logo} alt="" className="w-20 h-20" />
-      </div>
-      <BackButton />
+      <Nav />
       <div className="flex flex-wrap justify-center mb-4">
         {/* Saturday Card */}
         <div className="max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-200 transform transition-all hover:-translate-y-1 mt-16 mx-4">
