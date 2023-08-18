@@ -6,7 +6,7 @@ import linkedinImage from '../assets/linkedin.jpg';
 import ContactModal from './contactModal';
 import surf from '../assets/surf.jpg'
 import jump from '../assets/jump.jpg'
-import CV from '../assets/CV Hugh.pdf'
+import CV from '../assets/HughResume.pdf'
 import mountain from '../assets/mountain.jpg'
 import contact from '../assets/contact.jpg'
 import popSound from '../assets/pop.wav';
