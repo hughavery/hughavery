@@ -33,7 +33,7 @@ function About() {
                 <li>🎾 Tennis</li>
                 <li>🥾 Tramping</li>
                 <li>🏄‍♂️ Surfing</li>
-                <li>🎻<a href="https://dub.sh/OoNxCoi" target='_blank' className='underline hover:text-blue-400'>Violin</a> </li>
+                <li>🎻 Violin </li>
                 <li>🚵‍♂️ Mountain Biking</li>
               </ul>
             </div>
